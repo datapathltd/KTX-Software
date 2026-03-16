@@ -176,7 +176,8 @@ macro(astcenc_set_properties ASTCENC_TARGET_NAME ASTCENC_VENEER_TYPE)
             $<${is_gnu_fe}:-Wno-cast-function-type>
 
             # Force DWARF4 for Valgrind profiling
-            $<$<AND:$<PLATFORM_ID:Linux,Darwin>,${is_clang}>:-gdwarf-4>
+            # DATAPATH PATCH - This conflicts with our DWARF-5 settings.
+            #$<$<AND:$<PLATFORM_ID:Linux,Darwin>,${is_clang}>:-gdwarf-4>
 
             # Disable non-portable Windows.h warning (fixing it fails builds on MinGW)
             $<$<AND:$<PLATFORM_ID:Windows>,${is_clang}>:-Wno-nonportable-system-include-path>)
